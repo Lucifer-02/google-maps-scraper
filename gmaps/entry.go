@@ -59,7 +59,7 @@ type Review struct {
 type Entry struct {
 	ID         string              `json:"input_id"`
 	Link       string              `json:"link"`
-	Cid        string              `json:"cid"`
+	// Cid        string              `json:"cid"`
 	Title      string              `json:"title"`
 	Categories []string            `json:"categories"`
 	Category   string              `json:"category"`
@@ -161,34 +161,34 @@ func (e *Entry) CsvHeaders() []string {
 		"title",
 		"category",
 		"address",
-		"open_hours",
-		"popular_times",
-		"website",
-		"phone",
-		"plus_code",
-		"review_count",
-		"review_rating",
-		"reviews_per_rating",
+		// "open_hours",
+		// "popular_times",
+		// "website",
+		// "phone",
+		// "plus_code",
+		// "review_count",
+		// "review_rating",
+		// "reviews_per_rating",
 		"latitude",
 		"longitude",
-		"cid",
-		"status",
-		"descriptions",
-		"reviews_link",
-		"thumbnail",
-		"timezone",
-		"price_range",
-		"data_id",
-		"images",
-		"reservations",
-		"order_online",
-		"menu",
-		"owner",
+		// "cid",
+		// "status",
+		// "descriptions",
+		// "reviews_link",
+		// "thumbnail",
+		// "timezone",
+		// "price_range",
+		// "data_id",
+		// "images",
+		// "reservations",
+		// "order_online",
+		// "menu",
+		// "owner",
 		"complete_address",
-		"about",
-		"user_reviews",
-		"user_reviews_extended",
-		"emails",
+		// "about",
+		// "user_reviews",
+		// "user_reviews_extended",
+		// "emails",
 	}
 }
 
@@ -198,35 +198,36 @@ func (e *Entry) CsvRow() []string {
 		e.Link,
 		e.Title,
 		e.Category,
+    stringSliceToString(e.Categories),
 		e.Address,
-		stringify(e.OpenHours),
-		stringify(e.PopularTimes),
-		e.WebSite,
-		e.Phone,
-		e.PlusCode,
-		stringify(e.ReviewCount),
-		stringify(e.ReviewRating),
-		stringify(e.ReviewsPerRating),
+		// stringify(e.OpenHours),
+		// stringify(e.PopularTimes),
+		// e.WebSite,
+		// e.Phone,
+		// e.PlusCode,
+		// stringify(e.ReviewCount),
+		// stringify(e.ReviewRating),
+		// stringify(e.ReviewsPerRating),
 		stringify(e.Latitude),
 		stringify(e.Longtitude),
-		e.Cid,
-		e.Status,
-		e.Description,
-		e.ReviewsLink,
-		e.Thumbnail,
-		e.Timezone,
-		e.PriceRange,
-		e.DataID,
-		stringify(e.Images),
-		stringify(e.Reservations),
-		stringify(e.OrderOnline),
-		stringify(e.Menu),
-		stringify(e.Owner),
+		// e.Cid,
+		// e.Status,
+		// e.Description,
+		// e.ReviewsLink,
+		// e.Thumbnail,
+		// e.Timezone,
+		// e.PriceRange,
+		// e.DataID,
+		// stringify(e.Images),
+		// stringify(e.Reservations),
+		// stringify(e.OrderOnline),
+		// stringify(e.Menu),
+		// stringify(e.Owner),
 		stringify(e.CompleteAddress),
-		stringify(e.About),
-		stringify(e.UserReviews),
-		stringify(e.UserReviewsExtended),
-		stringSliceToString(e.Emails),
+		// stringify(e.About),
+		// stringify(e.UserReviews),
+		// stringify(e.UserReviewsExtended),
+		// stringSliceToString(e.Emails),
 	}
 }
 
@@ -312,69 +313,69 @@ func EntryFromJSON(raw []byte, reviewCountOnly ...bool) (entry Entry, err error)
 	entry.Address = strings.TrimSpace(
 		strings.TrimPrefix(getNthElementAndCast[string](darray, 18), entry.Title+","),
 	)
-	entry.OpenHours = getHours(darray)
-	entry.PopularTimes = getPopularTimes(darray)
-	entry.WebSite = getNthElementAndCast[string](darray, 7, 0)
-	entry.Phone = getNthElementAndCast[string](darray, 178, 0, 0)
-	entry.PlusCode = getNthElementAndCast[string](darray, 183, 2, 2, 0)
-	entry.ReviewRating = getNthElementAndCast[float64](darray, 4, 7)
+	// entry.OpenHours = getHours(darray)
+	// entry.PopularTimes = getPopularTimes(darray)
+	// entry.WebSite = getNthElementAndCast[string](darray, 7, 0)
+	// entry.Phone = getNthElementAndCast[string](darray, 178, 0, 0)
+	// entry.PlusCode = getNthElementAndCast[string](darray, 183, 2, 2, 0)
+	// entry.ReviewRating = getNthElementAndCast[float64](darray, 4, 7)
 	entry.Latitude = getNthElementAndCast[float64](darray, 9, 2)
 	entry.Longtitude = getNthElementAndCast[float64](darray, 9, 3)
-	entry.Cid = getNthElementAndCast[string](jd, 25, 3, 0, 13, 0, 0, 1)
-	entry.Status = getNthElementAndCast[string](darray, 34, 4, 4)
-	entry.Description = getNthElementAndCast[string](darray, 32, 1, 1)
-	entry.ReviewsLink = getNthElementAndCast[string](darray, 4, 3, 0)
-	entry.Thumbnail = getNthElementAndCast[string](darray, 72, 0, 1, 6, 0)
-	entry.Timezone = getNthElementAndCast[string](darray, 30)
-	entry.PriceRange = getNthElementAndCast[string](darray, 4, 2)
-	entry.DataID = getNthElementAndCast[string](darray, 10)
+	// entry.Cid = getNthElementAndCast[string](jd, 25, 3, 0, 13, 0, 0, 1)
+	// entry.Status = getNthElementAndCast[string](darray, 34, 4, 4)
+	// entry.Description = getNthElementAndCast[string](darray, 32, 1, 1)
+	// entry.ReviewsLink = getNthElementAndCast[string](darray, 4, 3, 0)
+	// entry.Thumbnail = getNthElementAndCast[string](darray, 72, 0, 1, 6, 0)
+	// entry.Timezone = getNthElementAndCast[string](darray, 30)
+	// entry.PriceRange = getNthElementAndCast[string](darray, 4, 2)
+	// entry.DataID = getNthElementAndCast[string](darray, 10)
 
-	items := getLinkSource(getLinkSourceParams{
-		arr:    getNthElementAndCast[[]any](darray, 171, 0),
-		link:   []int{3, 0, 6, 0},
-		source: []int{2},
-	})
+	// items := getLinkSource(getLinkSourceParams{
+	// 	arr:    getNthElementAndCast[[]any](darray, 171, 0),
+	// 	link:   []int{3, 0, 6, 0},
+	// 	source: []int{2},
+	// })
+	//
+	// entry.Images = make([]Image, len(items))
+	//
+	// for i := range items {
+	// 	entry.Images[i] = Image{
+	// 		Title: items[i].Source,
+	// 		Image: items[i].Link,
+	// 	}
+	// }
 
-	entry.Images = make([]Image, len(items))
+	// entry.Reservations = getLinkSource(getLinkSourceParams{
+	// 	arr:    getNthElementAndCast[[]any](darray, 46),
+	// 	link:   []int{0},
+	// 	source: []int{1},
+	// })
 
-	for i := range items {
-		entry.Images[i] = Image{
-			Title: items[i].Source,
-			Image: items[i].Link,
-		}
-	}
-
-	entry.Reservations = getLinkSource(getLinkSourceParams{
-		arr:    getNthElementAndCast[[]any](darray, 46),
-		link:   []int{0},
-		source: []int{1},
-	})
-
-	orderOnlineI := getNthElementAndCast[[]any](darray, 75, 0, 1, 2)
-
-	if len(orderOnlineI) == 0 {
-		orderOnlineI = getNthElementAndCast[[]any](darray, 75, 0, 0, 2)
-	}
-
-	entry.OrderOnline = getLinkSource(getLinkSourceParams{
-		arr:    orderOnlineI,
-		link:   []int{1, 2, 0},
-		source: []int{0, 0},
-	})
-
-	entry.Menu = LinkSource{
-		Link:   getNthElementAndCast[string](darray, 38, 0),
-		Source: getNthElementAndCast[string](darray, 38, 1),
-	}
-
-	entry.Owner = Owner{
-		ID:   getNthElementAndCast[string](darray, 57, 2),
-		Name: getNthElementAndCast[string](darray, 57, 1),
-	}
-
-	if entry.Owner.ID != "" {
-		entry.Owner.Link = fmt.Sprintf("https://www.google.com/maps/contrib/%s", entry.Owner.ID)
-	}
+	// orderOnlineI := getNthElementAndCast[[]any](darray, 75, 0, 1, 2)
+	//
+	// if len(orderOnlineI) == 0 {
+	// 	orderOnlineI = getNthElementAndCast[[]any](darray, 75, 0, 0, 2)
+	// }
+	//
+	// entry.OrderOnline = getLinkSource(getLinkSourceParams{
+	// 	arr:    orderOnlineI,
+	// 	link:   []int{1, 2, 0},
+	// 	source: []int{0, 0},
+	// })
+	//
+	// entry.Menu = LinkSource{
+	// 	Link:   getNthElementAndCast[string](darray, 38, 0),
+	// 	Source: getNthElementAndCast[string](darray, 38, 1),
+	// }
+	//
+	// entry.Owner = Owner{
+	// 	ID:   getNthElementAndCast[string](darray, 57, 2),
+	// 	Name: getNthElementAndCast[string](darray, 57, 1),
+	// }
+	//
+	// if entry.Owner.ID != "" {
+	// 	entry.Owner.Link = fmt.Sprintf("https://www.google.com/maps/contrib/%s", entry.Owner.ID)
+	// }
 
 	entry.CompleteAddress = Address{
 		Borough:    getNthElementAndCast[string](darray, 183, 1, 0),
@@ -385,41 +386,41 @@ func EntryFromJSON(raw []byte, reviewCountOnly ...bool) (entry Entry, err error)
 		Country:    getNthElementAndCast[string](darray, 183, 1, 6),
 	}
 
-	aboutI := getNthElementAndCast[[]any](darray, 100, 1)
-
-	for i := range aboutI {
-		el := getNthElementAndCast[[]any](aboutI, i)
-		about := About{
-			ID:   getNthElementAndCast[string](el, 0),
-			Name: getNthElementAndCast[string](el, 1),
-		}
-
-		optsI := getNthElementAndCast[[]any](el, 2)
-
-		for j := range optsI {
-			opt := Option{
-				Enabled: (getNthElementAndCast[float64](optsI, j, 2, 1, 0, 0)) == 1,
-				Name:    getNthElementAndCast[string](optsI, j, 1),
-			}
-
-			if opt.Name != "" {
-				about.Options = append(about.Options, opt)
-			}
-		}
-
-		entry.About = append(entry.About, about)
-	}
-
-	entry.ReviewsPerRating = map[int]int{
-		1: int(getNthElementAndCast[float64](darray, 175, 3, 0)),
-		2: int(getNthElementAndCast[float64](darray, 175, 3, 1)),
-		3: int(getNthElementAndCast[float64](darray, 175, 3, 2)),
-		4: int(getNthElementAndCast[float64](darray, 175, 3, 3)),
-		5: int(getNthElementAndCast[float64](darray, 175, 3, 4)),
-	}
-
-	reviewsI := getNthElementAndCast[[]any](darray, 175, 9, 0, 0)
-	entry.UserReviews = make([]Review, 0, len(reviewsI))
+	// aboutI := getNthElementAndCast[[]any](darray, 100, 1)
+	//
+	// for i := range aboutI {
+	// 	el := getNthElementAndCast[[]any](aboutI, i)
+	// 	about := About{
+	// 		ID:   getNthElementAndCast[string](el, 0),
+	// 		Name: getNthElementAndCast[string](el, 1),
+	// 	}
+	//
+	// 	optsI := getNthElementAndCast[[]any](el, 2)
+	//
+	// 	for j := range optsI {
+	// 		opt := Option{
+	// 			Enabled: (getNthElementAndCast[float64](optsI, j, 2, 1, 0, 0)) == 1,
+	// 			Name:    getNthElementAndCast[string](optsI, j, 1),
+	// 		}
+	//
+	// 		if opt.Name != "" {
+	// 			about.Options = append(about.Options, opt)
+	// 		}
+	// 	}
+	//
+	// 	entry.About = append(entry.About, about)
+	// }
+	//
+	// entry.ReviewsPerRating = map[int]int{
+	// 	1: int(getNthElementAndCast[float64](darray, 175, 3, 0)),
+	// 	2: int(getNthElementAndCast[float64](darray, 175, 3, 1)),
+	// 	3: int(getNthElementAndCast[float64](darray, 175, 3, 2)),
+	// 	4: int(getNthElementAndCast[float64](darray, 175, 3, 3)),
+	// 	5: int(getNthElementAndCast[float64](darray, 175, 3, 4)),
+	// }
+	//
+	// reviewsI := getNthElementAndCast[[]any](darray, 175, 9, 0, 0)
+	// entry.UserReviews = make([]Review, 0, len(reviewsI))
 
 	return entry, nil
 }
