@@ -160,6 +160,7 @@ func (e *Entry) CsvHeaders() []string {
 		"link",
 		"title",
 		"category",
+    "categories",
 		"address",
 		// "open_hours",
 		// "popular_times",
