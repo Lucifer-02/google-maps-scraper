@@ -59,7 +59,7 @@ type Review struct {
 type Entry struct {
 	ID         string              `json:"input_id"`
 	Link       string              `json:"link"`
-	// Cid        string              `json:"cid"`
+	Cid        string              `json:"cid"`
 	Title      string              `json:"title"`
 	Categories []string            `json:"categories"`
 	Category   string              `json:"category"`
